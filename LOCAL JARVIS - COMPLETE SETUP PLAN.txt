@@ -1,0 +1,148 @@
+===============================================================
+LOCAL JARVIS - COMPLETE SETUP PLAN
+For: Ubuntu (fresh install)
+PC: ASUS ROG Strix (i5-8400 + 32GB RAM + GTX 1060 3GB)
+Goal: Local AI portal like PewDiePie style
+===============================================================
+
+FLOW
+----
+
+1. Update system
+2. Install ALL basic tools
+3. Install Docker
+4. Enable Docker + permissions
+5. Log out and log back in
+6. Install Ollama
+7. Download models
+8. Install Open WebUI
+9. Open the portal
+10. Done
+
+
+===============================================================
+EXACT COMMANDS (copy one block at a time)
+===============================================================
+
+--------------------------------------------------
+STEP 1 - Update system
+--------------------------------------------------
+sudo apt update && sudo apt upgrade -y
+
+
+--------------------------------------------------
+STEP 2 - Install ALL basic tools
+--------------------------------------------------
+sudo apt install -y \
+curl \
+git \
+wget \
+nano \
+htop \
+net-tools \
+software-properties-common \
+apt-transport-https \
+ca-certificates \
+gnupg \
+lsb-release \
+build-essential
+
+
+--------------------------------------------------
+STEP 3 - Install Docker
+--------------------------------------------------
+sudo apt install -y docker.io docker-compose
+
+
+--------------------------------------------------
+STEP 4 - Start Docker and give permission
+--------------------------------------------------
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+
+
+--------------------------------------------------
+STEP 5 - LOG OUT AND LOG BACK IN
+--------------------------------------------------
+IMPORTANT:
+- Close the terminal
+- Log out of Ubuntu
+- Log back in
+- Open terminal again
+
+This step is required. Do not skip.
+
+
+--------------------------------------------------
+STEP 6 - Install Ollama
+--------------------------------------------------
+curl -fsSL https://ollama.com/install.sh | sh
+
+
+--------------------------------------------------
+STEP 7 - Download models (this takes time)
+--------------------------------------------------
+ollama pull qwen2.5-coder:14b
+ollama pull gemma2:9b
+
+
+--------------------------------------------------
+STEP 8 - Install Open WebUI
+--------------------------------------------------
+docker run -d \
+  -p 3000:8080 \
+  --add-host=host.docker.internal:host-gateway \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  --restart always \
+  ghcr.io/open-webui/open-webui:main
+
+
+--------------------------------------------------
+STEP 9 - Check if it is running
+--------------------------------------------------
+docker ps
+
+
+--------------------------------------------------
+STEP 10 - Open your portal
+--------------------------------------------------
+Open browser and go to:
+
+http://localhost:3000
+
+Create your account.
+This is now your local AI portal.
+
+
+===============================================================
+IF SOMETHING FAILS
+===============================================================
+
+If Docker permission error appears:
+→ You forgot to log out and log back in after STEP 4.
+
+If "docker: command not found":
+→ Run STEP 3 again.
+
+If models download very slow:
+→ Normal. Your internet + model size. Just wait.
+
+
+===============================================================
+AFTER IT WORKS
+===============================================================
+
+Tell me: "Portal is working"
+
+Then I will give you the next steps:
+- Access from your phone (Tailscale)
+- Auto-start on boot
+- Better models later
+- Voice (talk to it)
+- Connect to ConectandoEnsenada work
+
+
+===============================================================
+END
+===============================================================
