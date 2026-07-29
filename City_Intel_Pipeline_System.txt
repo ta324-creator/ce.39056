@@ -1,0 +1,44 @@
+City Intel Pipeline (CIP)
+
+Mission
+
+Turn any public business reference into a structured, verified draft
+listing with minimal human effort.
+
+Trigger
+
+An agent receives one or more inputs: - TikTok URL - Instagram profile -
+Facebook page - Google Maps link - Website - YouTube video - PDF -
+Image - Business card - Plain business name
+
+Workflow
+
+1.  Identify the business.
+2.  Collect public information from authoritative and official sources
+    when available.
+3.  Build a unified business profile.
+4.  Detect duplicates.
+5.  Analyze strengths, weaknesses, and missing information.
+6.  Generate SEO metadata, tags, categories, and embeddings.
+7.  Download or reference approved assets; if assets are missing, use
+    placeholders and report dependencies.
+8.  Present a confidence score and missing items.
+9.  Wait for human approval.
+10. Publish.
+
+Rules
+
+-   Never invent facts.
+-   Prefer official sources.
+-   Use placeholders instead of fabricated assets.
+-   Record every source.
+-   Flag uncertainty.
+-   Make every step modular so new data sources can be added later.
+
+Output
+
+Each import should produce: - Structured JSON - Markdown profile - SEO
+metadata - Embeddings - Asset manifest - Missing dependency report -
+Approval-ready draft
+
+The human is the editor, not the data-entry operator.
